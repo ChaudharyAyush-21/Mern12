@@ -4,8 +4,10 @@
     align-items: center;
     background-color: var(--btn-color);
     padding: 2rem 0 2rem 0;
-
-    
-    
-    
+}
+@media (max-width: 600px) {
+    .container-footer {
+        flex-direction: column;
+        padding: 1rem 0 1rem 0;
+    }
 }
