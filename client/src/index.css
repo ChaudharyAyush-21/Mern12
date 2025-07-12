@@ -354,3 +354,73 @@ a.active {
     background-color: var(--btn-color);
     color: #fff;
 }
+/* Responsive styles */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100rem;
+        padding: 3rem 1.6rem;
+    }
+    .grid {
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 900px) {
+    html {
+        font-size: 56%;
+    }
+    .container {
+        max-width: 80rem;
+        padding: 2rem 1rem;
+    }
+    .grid-two-cols,
+    .grid-four-cols {
+        grid-template-columns: 1fr;
+    }
+    .section-login .login-form,
+    .section-registration .registration-form,
+    .section-contact .contact-form {
+        margin: 0;
+        width: 100%;
+    }
+    .section-login .container,
+    .section-registration .container,
+    .section-contact .container {
+        margin: 0;
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        font-size: 50%;
+    }
+    h1 {
+        font-size: 3.2rem;
+    }
+    .container {
+        max-width: 100%;
+        padding: 1rem 0.5rem;
+    }
+    .grid {
+        gap: 2rem;
+    }
+    .hero-image img,
+    .login-image img,
+    .registration-image img,
+    .contact-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+    }
+    .container-content h2.header {
+        font-size: 10vh;
+    }
+    .container-content h4 {
+        font-size: 1.4rem;
+    }
+    .container-content .btns a {
+        padding: 8px 16px;
+        font-size: 1.2rem;
+    }
+}
