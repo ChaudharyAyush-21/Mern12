@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
 
   const [user, setUser] = useState({
@@ -7,6 +8,7 @@ const Register = () => {
     phone:"",
     password:"",
 });
+    const navigate = useNavigate();
 
     const handleInput = (e) =>{
       let name = e.target.name;
@@ -18,10 +20,32 @@ const Register = () => {
       });
     };
 
-    const handleForm = (e) =>{
+    const handleForm = async(e) =>{
       e.preventDefault();
-      alert(user);
-    }
+      try {
+        const response = await fetch(`http://localhost:4000/api/auth/register`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+      if(response.ok) {
+        setUser({
+            username:"",
+            email:"",
+            phone:"",
+            password:""
+        });
+        navigate('/login'); // Redirect to login page after successful registration
+      }
+      console.log(response);
+      
+      } catch (error) {
+        console.log("register error", error);
+        
+      }
+    };
 
 
   return (
@@ -49,7 +73,7 @@ const Register = () => {
 
           <div>
           <label htmlFor="phone">Phone</label>
-          <input type="" name ="phone" id="phone" placeholder='Enter your phone' required autoComplete='off' value={user.phone} onChange={handleInput}/>
+          <input type="tel" name ="phone" id="phone" placeholder='Enter your phone' required autoComplete='off' value={user.phone} onChange={handleInput}/>
           </div>
 
           <div>

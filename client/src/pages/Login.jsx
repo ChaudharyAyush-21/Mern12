@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
 
   const [user, setUser]=useState({
@@ -6,7 +7,9 @@ const Login = () => {
     password:""
   });
 
-  const handleInput = () =>{
+  const navigate = useNavigate();
+
+  const handleInput = (e) =>{
     let name = e.target.name;
     let value = e.target.value;
 
@@ -16,8 +19,28 @@ const Login = () => {
     });
   };
 
-  const handleForm = (e) =>{
+  const handleForm = async(e) =>{
     e.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:4000/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      });
+      console.log(response);
+      if (response.ok){
+        alert("Login successful");
+        setUser({
+          email:"",
+          password:""
+        });
+        navigate('/'); // Redirect to home page after successful login
+      }
+    } catch (error) {
+      console.log("login error", error);
+    }
   };
 
   return (
