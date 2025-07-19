@@ -2,15 +2,15 @@ const User = require('../models/user-model');
 const bcrypt = require('bcryptjs');
 
 
-const home = async (req,res) => {
-   try {
-        res.status(200).send('Hello, World! This is the home root route.');
-   } catch (error) {
-       console.error('Error in home controller:', error);
-       res.status(500).send('Internal Server Error');
+// const home = async (req,res) => {
+//    try {
+//         res.status(200).send('Hello, World! This is the home root route.');
+//    } catch (error) {
+//        console.error('Error in home controller:', error);
+//        res.status(500).send('Internal Server Error');
     
-   }
-};
+//    }
+// };
 
 const register = async (req,res) => {
     try {
@@ -56,4 +56,16 @@ const login = async (req,res) =>{
     }
 };
 
-module.exports =  { home, register , login };
+const user = async (req, res) => {
+    try {
+        const userData = req.user;
+        return res.status(200).json({ msg: userData});
+        
+    } catch (error) {
+        console.log(`error from the user route: ${error}`);
+        
+    }
+
+}
+
+module.exports =  { register , login ,user};
