@@ -1,5 +1,9 @@
 import React from 'react'
+import { useAuth } from '../store/auth.jsx';
 const About = () => {
+
+  const { user } = useAuth();
+
   return (
     <>
      <section>
@@ -7,6 +11,7 @@ const About = () => {
             <div className="container grid grid-two-cols">
               <div className="hero-content">
                 <p>Welcome</p>
+                <p>Hii {user.username}</p>
                 <h1 className='main-heading'>Why Choose Us</h1>
                 <p>
                   Expertise: We bring deep industry knowledge and proven experience to deliver high-quality solutions.

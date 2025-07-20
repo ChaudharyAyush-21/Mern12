@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
+import { useAuth } from '../store/auth.jsx';
+
+const defaultContactFormData ={
+      username:"",
+      email:"",
+      message:"",
+  };
 const Contact = () => {
 
-  const [contact, setContact] = useState({
-    username:"",
-    email:"",
-    message:"",
-  });
+  const [contact, setContact] = useState(defaultContactFormData);
+
+  const [userData, setUserData] = useState(true);
+
+  const { user } = useAuth();
+
+  if(userData && user) {
+    setContact({
+      username: user.username,
+      email: user.email,
+      message: ""
+    });
+    setUserData(false);
+  };
 
   const handleInput = (e) =>{
       let name = e.target.name;
@@ -17,9 +33,35 @@ const Contact = () => {
       }));
   };
 
-  const handleForm = (e) =>{
-    e.preventDefault();
-  }
+   const handleForm = async (e) =>{
+      e.preventDefault();
+      try {
+        console.log("Contact data to be sent:", contact);
+
+        const response = await fetch("http://localhost:4000/api/form/contact",{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contact),
+      });
+      if(response.ok) {
+        setContact(defaultContactFormData);
+
+        const data = await response.json();
+        alert("Message sent successfully!");
+        console.log("res from the server",data);
+        
+       
+      }
+      console.log(response);
+      
+      } catch (error) {
+        console.log("contact error", error);
+        
+      }
+    };
+
 
   return (
     <>
@@ -54,7 +96,7 @@ const Contact = () => {
             
                 <br />
 
-            <button type='submit' className='btn btn-submit'>Submit</button>
+            <button type='submit' className='btn btn-submit' >Submit</button>
 
 
               </form>
