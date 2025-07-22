@@ -1,22 +1,44 @@
 import React from 'react'
+import { useAuth } from '../store/auth';
 
 const Services = () => {
+
+  const { services } = useAuth();
   return (
-    <>
-      <h1>welcome to services</h1>
-      <p>The Service Layer in a MERN (MongoDB, Express, React, Node.js) project is responsible for handling the business logic of the application. It acts as a bridge between the controllers (route handlers) and the database layer (models), ensuring that the logic of your application remains clean, organized, and reusable.</p>
-      <p>Purpose of the Service Layer
-Separation of Concerns: It keeps the route controllers simple by moving complex logic into dedicated service functions.
+    <section className="section-services">
+      <div className="container">
+        <h1 className="main-heading">Services </h1>
+      </div>
 
-Reusability: Service functions can be reused across different controllers or even in scheduled jobs and background workers.
+      <div className="container grid grid-three-cols">
+        {services.map((curElem, index) => {
+          const { price, description, provider, service } = curElem;
 
-Testability: Isolating logic in services makes unit testing easier and more effective.
+          return (
+            <div className="card" key={index}>
+              <div className="card-img">
+                <img
+                  src="design.png"
+                  alt="our services info"
+                  width="200"
+                />
+              </div>
 
-Maintainability: Updating or modifying business logic is easier when it's centralized in the service layer.
-
-</p>
-    </>
-  )
+              <div className="card-details">
+                <div className="grid grid-two-cols">
+                  <p>{provider}</p>
+                  <p>{price}</p>
+                </div>
+                <h2>{service}</h2>
+                <p>{description}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+  
 }
 
 export default Services;
