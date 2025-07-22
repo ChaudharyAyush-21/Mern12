@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const authRoute = require('./routes/auth-router'); 
 const contactRoute = require('./routes/contact-router'); 
+const serviceRoute = require('./routes/service-router');
 const app = express();
 const connectDB = require('./utils/db'); 
 const errorMiddleware = require('./middlewares/error-middleware');
@@ -19,6 +20,8 @@ app.use(express.json());  //middleware to parse JSON bodies
 
 app.use("/api/auth",authRoute);
 app.use("/api/form",contactRoute);
+app.use("/api/data",serviceRoute);
+
 
 
 app.use(errorMiddleware);
