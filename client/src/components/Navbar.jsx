@@ -21,13 +21,13 @@ const Navbar = () => {
                     <li> <NavLink to="/services">Service</NavLink></li>
                     <li> <NavLink to="/contact">Contact</NavLink></li>
 
-                    {isLoggedIn ? <li> <NavLink to="/logout">Logout</NavLink></li> :
-
+                    {isLoggedIn ? (<li> <NavLink to="/logout">Logout</NavLink></li> ) :
+                    (
                     <>
                     <li> <NavLink to="/register">Register</NavLink></li>
                     <li> <NavLink to="/login">Login</NavLink></li>
                     </>
-                    }
+                    )}
                 </ul>
             </nav>
         </div>
