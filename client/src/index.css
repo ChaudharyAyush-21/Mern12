@@ -13,6 +13,12 @@ html{
     --dark-color:#242424;
     --helper-color:#99b9ff;
 }
+/* react toastify */
+.toast-body {
+    font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
+    
+    font-size: 1.875rem ;
+}
 /* base style */
 body {
     margin: 0;

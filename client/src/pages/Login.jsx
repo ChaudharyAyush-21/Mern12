@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import  {useAuth}  from '../store/auth';
+import  { useAuth }  from '../store/auth';
+import { toast } from 'react-toastify'
 const Login = () => {
 
   const [user, setUser]=useState({
@@ -35,16 +36,17 @@ const Login = () => {
         const res_data = await response.json();
 
       if (response.ok){
-        alert("Login successful");
+        
         storetokenInLS(res_data.token);
 
         setUser({
           email:"",
           password:""
         });
+        toast.success("Login successful");
         navigate('/'); // Redirect to home page after successful login
       }else {
-        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        toast.error(res_data.extradetails ? res_data.extradetails : res_data.message);
 
       }
     } catch (error) {
