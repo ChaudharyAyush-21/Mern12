@@ -5,5 +5,5 @@ const contactSchema = new Schema({
     message : {type:String ,required: true},
 
 });
-const Constact = new model("Contact" , contactSchema);
-module.exports = Constact;
+const Contact = new model("Contact" , contactSchema);
+module.exports = Contact;
