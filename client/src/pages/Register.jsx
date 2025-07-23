@@ -32,9 +32,13 @@ const Register = () => {
         },
         body: JSON.stringify(user)
       });
-      if(response.ok) {
+
+        // console.log(response);
         const res_data = await response.json();
-        console.log("res from the server",res_data);
+        console.log("res from the server",res_data.extraDetails);
+
+      if(response.ok) {
+
         storetokenInLS(res_data.token);
         setUser({
             username:"",
@@ -43,8 +47,10 @@ const Register = () => {
             password:""
         });
         navigate('/login'); // Redirect to login page after successful registration
+      }else{
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
-      console.log(response);
+
       
       } catch (error) {
         console.log("register error", error);

@@ -31,10 +31,11 @@ const Login = () => {
         },
         body: JSON.stringify(user)
       });
-      console.log(response);
+      // console.log(response);
+        const res_data = await response.json();
+
       if (response.ok){
         alert("Login successful");
-        const res_data = await response.json();
         storetokenInLS(res_data.token);
 
         setUser({
@@ -42,6 +43,9 @@ const Login = () => {
           password:""
         });
         navigate('/'); // Redirect to home page after successful login
+      }else {
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+
       }
     } catch (error) {
       console.log("login error", error);
