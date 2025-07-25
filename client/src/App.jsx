@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 import Error from './pages/Error';
 import Logout from './pages/Logout';
 import AdminLayout from './components/Admin-Layout';
-import AdminUsers from './pages/Admin-Users';
+import { AdminUsers } from './pages/Admin-Users';
 import AdminContacts from './pages/Admin-Contacts';
 
 const App = () =>{

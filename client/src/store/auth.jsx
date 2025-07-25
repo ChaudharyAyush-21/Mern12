@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
 
     const [user , setUser] = useState("");
     const [services, setServices] = useState("");
+    const authorizationToken = `Bearer ${token}`;
 
     const storetokenInLS = (serverToken) => {
         setToken(serverToken);
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }) => {
             const response = await fetch(`http://localhost:4000/api/auth/user`, {
                 method: 'GET',
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': authorizationToken,
                 },
             });
             if (response.ok) {
@@ -71,7 +72,7 @@ export const AuthProvider = ({ children }) => {
 
     // This is where you would typically manage authentication state
     return (
-        <AuthContext.Provider value={{ isLoggedIn, storetokenInLS , LogoutUser , user ,services}}>
+        <AuthContext.Provider value={{ isLoggedIn, storetokenInLS , LogoutUser , user ,services , authorizationToken}}>
         {children}
         </AuthContext.Provider>
     );
