@@ -11,7 +11,7 @@ const Home = () => {
             <div className="container grid grid-two-cols">
               <div className="hero-content">
                 <p>This is a simple home page built with React.</p>
-                <h1 className='main-heading'>Welcome to the Home Page</h1>
+                {/* <h1 className='main-heading'>Welcome to the Home Page</h1> */}
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, 
                   ratione labore dignissimos veritatis facilis harum possimus dicta ducimus 
