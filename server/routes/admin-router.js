@@ -11,5 +11,6 @@ router.route("/users/:id").get(authMiddleware ,adminMiddleware ,adminController.
 router.route("/users/update/:id").patch(authMiddleware ,adminMiddleware ,adminController.updateUserById);
 router.route("/users/delete/:id").delete(authMiddleware ,adminMiddleware ,adminController.deleteUserById);
 router.route("/contacts").get(authMiddleware ,adminController.getAllContacts);
+router.route("/contacts/delete/:id").delete(authMiddleware ,adminController.deleteContactById);
 
 module.exports = router;
