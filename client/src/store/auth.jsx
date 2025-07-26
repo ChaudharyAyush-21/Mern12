@@ -9,8 +9,8 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
     const [token , setToken] = useState(localStorage.getItem('token'));
-
     const [user , setUser] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
     const [services, setServices] = useState("");
     const authorizationToken = `Bearer ${token}`;
 
@@ -29,6 +29,7 @@ export const AuthProvider = ({ children }) => {
     //Authentication for the user data
     const userAuthentication = async () => {
         try {
+            setIsLoading(true);
             const response = await fetch(`http://localhost:4000/api/auth/user`, {
                 method: 'GET',
                 headers: {
@@ -39,9 +40,11 @@ export const AuthProvider = ({ children }) => {
                 const data = await response.json();
                 console.log("User data:", data.userData);
                 setUser(data.userData);
+                setIsLoading(false);
                 
             } else {
                 console.error("Failed to fetch user data");
+                setIsLoading(false);
             }
         } catch (error) {
             console.error("Error fetching user data:", error);
@@ -72,7 +75,7 @@ export const AuthProvider = ({ children }) => {
 
     // This is where you would typically manage authentication state
     return (
-        <AuthContext.Provider value={{ isLoggedIn, storetokenInLS , LogoutUser , user ,services , authorizationToken}}>
+        <AuthContext.Provider value={{ isLoggedIn, storetokenInLS , LogoutUser , user ,services , authorizationToken , isLoading }}>
         {children}
         </AuthContext.Provider>
     );
