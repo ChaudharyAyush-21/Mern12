@@ -20,7 +20,7 @@ const Services = () => {
                 <img
                   src="design.png"
                   alt="our services info"
-                  width="200"
+                  width="400"
                 />
               </div>
 
